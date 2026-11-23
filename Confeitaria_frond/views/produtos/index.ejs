@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+
+<h2>Produtos</h2>
+
+<div style="margin: 16px 0;">
+  <a href="/produtos/novo" style="display:inline-block; padding: 8px 14px; background: #5b2c6f; color: #fff; text-decoration: none; border-radius: 4px;">+ Novo produto</a>
+</div>
+
+<table style="width: 100%; border-collapse: collapse; background: #fff;">
+  <thead>
+    <tr style="background: #f0e6f5; text-align: left;">
+      <th style="padding: 10px;">ID</th>
+      <th style="padding: 10px;">Nome</th>
+      <th style="padding: 10px;">Categoria</th>
+      <th style="padding: 10px;">Preço</th>
+      <th style="padding: 10px;">Estoque</th>
+      <th style="padding: 10px;">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (lista.length === 0) { %>
+      <tr><td colspan="6" style="padding: 10px;">Nenhum produto cadastrado.</td></tr>
+    <% } %>
+    <% lista.forEach(p => { %>
+      <tr style="border-bottom: 1px solid #eee;">
+        <td style="padding: 10px;"><%= p.produtoId %></td>
+        <td style="padding: 10px;"><%= p.produtoNome %></td>
+        
+        <!-- Aqui mostra o NOME da categoria, usando o mapaCat que criamos na rota -->
+        <td style="padding: 10px;"><%= mapaCat[p.categoriaId] || ('#' + p.categoriaId) %></td>
+        
+        <td style="padding: 10px;">R$ <%= Number(p.produtoPreco).toFixed(2).replace('.', ',') %></td>
+        <td style="padding: 10px;"><%= p.produtoEstoque %></td>
+        <td style="padding: 10px; display: flex; gap: 8px;">
+          <a href="/produtos/editar/<%= p.produtoId %>" style="padding: 4px 8px; background: #5b2c6f; color: #fff; text-decoration: none; border-radius: 4px;">Editar</a>
+          
+          <form method="POST" action="/produtos/excluir/<%= p.produtoId %>" onsubmit="return confirm('Excluir o produto <%= p.produtoNome %>?');" style="margin: 0;">
+            <button type="submit" style="padding: 4px 8px; background: #c0392b; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Excluir</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>

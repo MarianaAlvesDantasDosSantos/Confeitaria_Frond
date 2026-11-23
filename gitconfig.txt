@@ -1,0 +1,2 @@
+git config --global user.name MarianaAlvesDantasDosSantos
+git config --global user.email claricealvessantos82@gmail.com

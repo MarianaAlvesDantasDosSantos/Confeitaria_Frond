@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+
+<h2><%= item ? 'Editar cliente' : 'Novo cliente' %></h2>
+
+<form method="POST" action="<%= item ? '/clientes/editar/' + item.clienteId : '/clientes/novo' %>" style="background: #fff; padding: 20px; max-width: 500px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+  
+  <div style="margin-bottom: 16px;">
+    <label for="clienteNome" style="font-weight: bold; display: block; margin-bottom: 4px;">Nome *</label>
+    <input type="text" id="clienteNome" name="clienteNome" required maxlength="120" value="<%= item ? item.clienteNome : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <label for="clienteEmail" style="font-weight: bold; display: block; margin-bottom: 4px;">E-mail *</label>
+    <input type="email" id="clienteEmail" name="clienteEmail" required maxlength="120" value="<%= item ? item.clienteEmail : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <label for="clienteCpf" style="font-weight: bold; display: block; margin-bottom: 4px;">CPF *</label>
+    <input type="text" id="clienteCpf" name="clienteCpf" required maxlength="14" value="<%= item ? item.clienteCpf : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <label for="clienteTelefone" style="font-weight: bold; display: block; margin-bottom: 4px;">Telefone</label>
+    <input type="text" id="clienteTelefone" name="clienteTelefone" maxlength="20" value="<%= item && item.clienteTelefone ? item.clienteTelefone : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <label for="clienteDataCadastro" style="font-weight: bold; display: block; margin-bottom: 4px;">Data de Cadastro *</label>
+    <input type="datetime-local" id="clienteDataCadastro" name="clienteDataCadastro" required 
+           value="<%= item ? new Date(item.clienteDataCadastro).toISOString().slice(0, 16) : new Date().toISOString().slice(0, 16) %>" 
+           style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+  </div>
+
+  <div>
+    <button type="submit" style="padding: 8px 16px; background: #5b2c6f; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Salvar</button>
+    <a href="/clientes" style="padding: 8px 16px; background: #888; color: #fff; text-decoration: none; border-radius: 4px; margin-left: 8px;">Cancelar</a>
+  </div>
+</form>
+
+<%- include('../partials/footer') %>

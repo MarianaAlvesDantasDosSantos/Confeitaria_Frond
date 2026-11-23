@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+
+<h2><%= item ? 'Editar produto' : 'Novo produto' %></h2>
+
+<form method="POST" action="<%= item ? '/produtos/editar/' + item.produtoId : '/produtos/novo' %>" style="background: #fff; padding: 20px; max-width: 500px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+  
+  <div style="margin-bottom: 16px;">
+    <label for="produtoNome" style="font-weight: bold; display: block; margin-bottom: 4px;">Nome *</label>
+    <input type="text" id="produtoNome" name="produtoNome" required maxlength="120" value="<%= item ? item.produtoNome : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <label for="categoriaId" style="font-weight: bold; display: block; margin-bottom: 4px;">Categoria *</label>
+    <select id="categoriaId" name="categoriaId" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+      <option value="">— selecione —</option>
+      <% categorias.forEach(c => { %>
+        <!-- Marca a categoria como 'selected' se for a categoria do produto na hora de editar -->
+        <option value="<%= c.categoriaId %>" <%= item && item.categoriaId === c.categoriaId ? 'selected' : '' %>>
+          <%= c.categoriaNome %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <label for="produtoDescricao" style="font-weight: bold; display: block; margin-bottom: 4px;">Descrição</label>
+    <textarea id="produtoDescricao" name="produtoDescricao" maxlength="255" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; min-height: 80px;"><%= item && item.produtoDescricao ? item.produtoDescricao : '' %></textarea>
+  </div>
+
+  <div style="margin-bottom: 16px; display: flex; gap: 16px;">
+    <div style="flex: 1;">
+      <label for="produtoPreco" style="font-weight: bold; display: block; margin-bottom: 4px;">Preço *</label>
+      <input type="number" id="produtoPreco" name="produtoPreco" required step="0.01" min="0" value="<%= item ? Number(item.produtoPreco).toFixed(2) : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+    </div>
+    <div style="flex: 1;">
+      <label for="produtoEstoque" style="font-weight: bold; display: block; margin-bottom: 4px;">Estoque *</label>
+      <input type="number" id="produtoEstoque" name="produtoEstoque" required min="0" value="<%= item ? item.produtoEstoque : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+    </div>
+  </div>
+
+  <div>
+    <button type="submit" style="padding: 8px 16px; background: #5b2c6f; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Salvar</button>
+    <a href="/produtos" style="padding: 8px 16px; background: #888; color: #fff; text-decoration: none; border-radius: 4px; margin-left: 8px;">Cancelar</a>
+  </div>
+</form>
+
+<%- include('../partials/footer') %>

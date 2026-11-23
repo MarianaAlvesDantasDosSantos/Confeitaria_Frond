@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+
+<h2>Categorias</h2>
+
+<div style="margin: 16px 0;">
+  <a href="/categorias/novo" style="display:inline-block; padding: 8px 14px; background: #5b2c6f; color: #fff; text-decoration: none; border-radius: 4px;">+ Nova categoria</a>
+</div>
+
+<table style="width: 100%; border-collapse: collapse; background: #fff;">
+  <thead>
+    <tr style="background: #f0e6f5; text-align: left;">
+      <th style="padding: 10px;">ID</th>
+      <th style="padding: 10px;">Nome</th>
+      <th style="padding: 10px;">Descrição</th>
+      <th style="padding: 10px;">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (lista.length === 0) { %>
+      <tr><td colspan="4" style="padding: 10px;">Nenhuma categoria cadastrada.</td></tr>
+    <% } %>
+    <% lista.forEach(c => { %>
+      <tr style="border-bottom: 1px solid #eee;">
+        <td style="padding: 10px;"><%= c.categoriaId %></td>
+        <td style="padding: 10px;"><%= c.categoriaNome %></td>
+        <td style="padding: 10px;"><%= c.categoriaDescricao || '—' %></td>
+        <td style="padding: 10px; display: flex; gap: 8px;">
+          <a href="/categorias/editar/<%= c.categoriaId %>" style="padding: 4px 8px; background: #5b2c6f; color: #fff; text-decoration: none; border-radius: 4px;">Editar</a>
+          
+          <form method="POST" action="/categorias/excluir/<%= c.categoriaId %>" onsubmit="return confirm('Excluir a categoria <%= c.categoriaNome %>?');" style="margin: 0;">
+            <button type="submit" style="padding: 4px 8px; background: #c0392b; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Excluir</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>

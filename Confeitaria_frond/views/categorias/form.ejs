@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+
+<h2><%= item ? 'Editar categoria' : 'Nova categoria' %></h2>
+
+<form method="POST" action="<%= item ? '/categorias/editar/' + item.categoriaId : '/categorias/novo' %>" style="background: #fff; padding: 20px; max-width: 500px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+  
+  <div style="margin-bottom: 16px;">
+    <label for="categoriaNome" style="font-weight: bold; display: block; margin-bottom: 4px;">Nome *</label>
+    <input type="text" id="categoriaNome" name="categoriaNome" required maxlength="100" value="<%= item ? item.categoriaNome : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <label for="categoriaDescricao" style="font-weight: bold; display: block; margin-bottom: 4px;">Descrição</label>
+    <textarea id="categoriaDescricao" name="categoriaDescricao" maxlength="255" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; min-height: 80px;"><%= item && item.categoriaDescricao ? item.categoriaDescricao : '' %></textarea>
+  </div>
+
+  <div>
+    <button type="submit" style="padding: 8px 16px; background: #5b2c6f; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Salvar</button>
+    <a href="/categorias" style="padding: 8px 16px; background: #888; color: #fff; text-decoration: none; border-radius: 4px; margin-left: 8px;">Cancelar</a>
+  </div>
+</form>
+
+<%- include('../partials/footer') %>

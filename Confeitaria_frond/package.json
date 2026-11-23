@@ -1,0 +1,14 @@
+{
+  "name": "confeitaria-frontend",
+  "version": "1.0.0",
+  "description": "Frontend Node.js + Express + EJS para a API Confeitaria",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}
