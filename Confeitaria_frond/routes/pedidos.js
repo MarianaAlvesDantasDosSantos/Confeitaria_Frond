@@ -106,26 +106,14 @@ router.post('/detalhes/:id/itens', async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+// Remover vínculo (Agora usando a rota correta da API)
 router.post('/detalhes/:id/itens/:produtoId/excluir', async (req, res, next) => {
   try {
     const pedidoId = Number(req.params.id);
     const produtoId = Number(req.params.produtoId);
 
-    const todos = await itensPedido.listar();
-    const itensDoPedido = todos.filter(i => i.pedidoId === pedidoId);
-    const restantes = itensDoPedido.filter(i => i.produtoId !== produtoId);
-
-    for (let i = 0; i < itensDoPedido.length; i++) {
-      await itensPedido.excluir(pedidoId);
-    }
-    for (const it of restantes) {
-      await itensPedido.criar({
-        pedidoId: it.pedidoId,
-        produtoId: it.produtoId,
-        itemPedidoQuantidade: it.itemPedidoQuantidade,
-        itemPedidoPrecoUnitario: it.itemPedidoPrecoUnitario
-      });
-    }
+    await itensPedido.excluirPar(pedidoId, produtoId);
+    
     res.redirect(`/pedidos/detalhes/${pedidoId}`);
   } catch (e) { next(e); }
 });

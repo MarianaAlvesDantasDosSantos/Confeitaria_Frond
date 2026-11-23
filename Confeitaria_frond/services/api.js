@@ -73,7 +73,7 @@ const itensPedido = {
   obter: (id) => call(`/ItensPedido/${id}`),
   criar: (dto) => call('/ItensPedido', { method: 'POST', body: JSON.stringify(dto) }),
   atualizar: (id, dto) => call(`/ItensPedido/${id}`, { method: 'PUT', body: JSON.stringify(dto) }),
-  excluir: (id) => call(`/ItensPedido/${id}`, { method: 'DELETE' })
+ excluirPar: (pedidoId, produtoId) => call(`/ItensPedido/${pedidoId}/${produtoId}`, { method: 'DELETE' })
 };
 
 module.exports = { categorias, clientes, produtos, pedidos, itensPedido };
