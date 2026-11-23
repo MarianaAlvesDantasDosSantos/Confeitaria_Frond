@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+
+<h2>Pedidos</h2>
+
+<div style="margin: 16px 0;">
+  <a href="/pedidos/novo" style="display:inline-block; padding: 8px 14px; background: #5b2c6f; color: #fff; text-decoration: none; border-radius: 4px;">+ Novo pedido</a>
+</div>
+
+<table style="width: 100%; border-collapse: collapse; background: #fff;">
+  <thead>
+    <tr style="background: #f0e6f5; text-align: left;">
+      <th style="padding: 10px;">ID</th>
+      <th style="padding: 10px;">Cliente</th>
+      <th style="padding: 10px;">Data</th>
+      <th style="padding: 10px;">Status</th>
+      <th style="padding: 10px;">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (lista.length === 0) { %>
+      <tr><td colspan="5" style="padding: 10px;">Nenhum pedido cadastrado.</td></tr>
+    <% } %>
+    <% lista.forEach(p => { %>
+      <tr style="border-bottom: 1px solid #eee;">
+        <td style="padding: 10px;"><%= p.pedidoId %></td>
+        <td style="padding: 10px;"><%= mapaCli[p.clienteId] || ('#' + p.clienteId) %></td>
+        <td style="padding: 10px;"><%= new Date(p.pedidoData).toLocaleString('pt-BR') %></td>
+        <td style="padding: 10px;"><%= p.pedidoStatus %></td>
+        <td style="padding: 10px; display: flex; gap: 8px;">
+          <a href="/pedidos/detalhes/<%= p.pedidoId %>" style="padding: 4px 8px; background: #888; color: #fff; text-decoration: none; border-radius: 4px;">Detalhes</a>
+          <a href="/pedidos/editar/<%= p.pedidoId %>" style="padding: 4px 8px; background: #5b2c6f; color: #fff; text-decoration: none; border-radius: 4px;">Editar</a>
+          
+          <form method="POST" action="/pedidos/excluir/<%= p.pedidoId %>" onsubmit="return confirm('Excluir o pedido #<%= p.pedidoId %>?');" style="margin: 0;">
+            <button type="submit" style="padding: 4px 8px; background: #c0392b; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Excluir</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>
