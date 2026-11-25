@@ -38,7 +38,7 @@
             <td style="padding: 8px;">R$ <%= sub.toFixed(2).replace('.', ',') %></td>
             <td style="padding: 8px;">
               <form method="POST" action="/pedidos/detalhes/<%= pedido.pedidoId %>/itens/<%= i.produtoId %>/excluir" onsubmit="return confirm('Remover este item?');" style="margin: 0;">
-                <button type="submit" style="padding: 4px 8px; background: #c0392b; color: #fff; border: none; border-radius: 4px; cursor: pointer;">✕</button>
+              <button type="submit" style="padding: 6px 12px; background: #c0392b; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">Remover</button>
               </form>
             </td>
           </tr>

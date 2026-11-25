@@ -2,7 +2,7 @@
 
 <h2><%= item ? 'Editar produto' : 'Novo produto' %></h2>
 
-<form method="POST" action="<%= item ? '/produtos/editar/' + item.produtoId : '/produtos/novo' %>" style="background: #fff; padding: 20px; max-width: 500px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+<form method="POST" action="<%= item ? '/produtos/editar/' + item.produtoId : '/produtos/novo' %>" class="card-form"></form>
   
   <div style="margin-bottom: 16px;">
     <label for="produtoNome" style="font-weight: bold; display: block; margin-bottom: 4px;">Nome *</label>
@@ -38,9 +38,9 @@
     </div>
   </div>
 
-  <div>
-    <button type="submit" style="padding: 8px 16px; background: #5b2c6f; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Salvar</button>
-    <a href="/produtos" style="padding: 8px 16px; background: #888; color: #fff; text-decoration: none; border-radius: 4px; margin-left: 8px;">Cancelar</a>
+    <div class="form-buttons">
+    <button type="submit" class="btn-salvar">Salvar</button>
+    <a href="/produtos" class="btn-cancelar">Cancelar</a>
   </div>
 </form>
 
