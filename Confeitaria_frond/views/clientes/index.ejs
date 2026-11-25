@@ -5,34 +5,39 @@
   <a href="/clientes/novo" class="btn-primary">+ Novo cliente</a>
 </div>
 
-<table style="width: 100%; border-collapse: collapse; background: #fff;">
+<table>
   <thead>
-    <tr style="background: #f0e6f5; text-align: left;">
-      <th style="padding: 10px;">ID</th>
-      <th style="padding: 10px;">Nome</th>
-      <th style="padding: 10px;">E-mail</th>
-      <th style="padding: 10px;">CPF</th>
-      <th style="padding: 10px;">Telefone</th>
-      <th style="padding: 10px;">Ações</th>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th>CPF</th>
+      <th>Telefone</th>
+      <th>Ações</th>
     </tr>
   </thead>
   <tbody>
     <% if (lista.length === 0) { %>
       <tr><td colspan="6" style="padding: 10px;">Nenhum cliente cadastrado.</td></tr>
     <% } %>
+    
     <% lista.forEach(c => { %>
       <tr style="border-bottom: 1px solid #eee;">
-        <td style="padding: 10px;"><%= c.clienteId %></td>
-        <td style="padding: 10px;"><%= c.clienteNome %></td>
-        <td style="padding: 10px;"><%= c.clienteEmail %></td>
-        <td style="padding: 10px;"><%= c.clienteCpf %></td>
-        <td style="padding: 10px;"><%= c.clienteTelefone || '—' %></td>
-        <td style="padding: 10px; display: flex; gap: 8px;">
-          <a href="/clientes/editar/<%= c.clienteId %>" style="padding: 4px 8px; background: #5b2c6f; color: #fff; text-decoration: none; border-radius: 4px;">Editar</a>
-          
-          <form method="POST" action="/clientes/excluir/<%= c.clienteId %>" onsubmit="return confirm('Excluir o cliente <%= c.clienteNome %>?');" style="margin: 0;">
-            <button type="submit" style="padding: 4px 8px; background: #c0392b; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Excluir</button>
-          </form>
+        <td><%= c.clienteId %></td>
+        <td><%= c.clienteNome %></td>
+        <td><%= c.clienteEmail %></td>
+        <td><%= c.clienteCpf %></td>
+        <td><%= c.clienteTelefone || '—' %></td>
+        
+        <!-- AQUI ESTÁ A CORREÇÃO: Usando classes em vez de style="" -->
+        <td>
+          <div class="acoes">
+            <a href="/clientes/editar/<%= c.clienteId %>" class="btn-editar">Editar</a>
+            
+            <form method="POST" action="/clientes/excluir/<%= c.clienteId %>" onsubmit="return confirm('Excluir o cliente <%= c.clienteNome %>?');" style="margin: 0;">
+              <button type="submit" class="btn-excluir">Excluir</button>
+            </form>
+          </div>
         </td>
       </tr>
     <% }) %>

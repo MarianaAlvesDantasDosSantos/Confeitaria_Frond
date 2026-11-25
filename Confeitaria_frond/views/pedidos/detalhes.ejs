@@ -38,7 +38,7 @@
             <td style="padding: 8px;">R$ <%= sub.toFixed(2).replace('.', ',') %></td>
             <td style="padding: 8px;">
               <form method="POST" action="/pedidos/detalhes/<%= pedido.pedidoId %>/itens/<%= i.produtoId %>/excluir" onsubmit="return confirm('Remover este item?');" style="margin: 0;">
-              <button type="submit" style="padding: 6px 12px; background: #c0392b; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">Remover</button>
+              <button type="submit" style="padding: 6px 12px; background: #8449a0; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">Remover</button>
               </form>
             </td>
           </tr>
@@ -80,6 +80,6 @@
   <% } %>
 </div>
 
-<a href="/pedidos" style="padding: 8px 16px; background: #888; color: #fff; text-decoration: none; border-radius: 4px;">← Voltar aos pedidos</a>
+<a href="/pedidos" style="padding: 8px 16px; background: #77389c; color: #fff; text-decoration: none; border-radius: 4px;">← Voltar aos pedidos</a>
 
 <%- include('../partials/footer') %>
