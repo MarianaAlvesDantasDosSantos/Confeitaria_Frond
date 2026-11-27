@@ -1,12 +1,12 @@
 <%- include('../partials/header') %>
 
-<h2><%= item ? 'Editar pedido' : 'Novo pedido' %></h2>
+<div style="max-width: 1100px; margin: 0 auto;">
+  <h2><%= item ? 'Editar pedido' : 'Novo pedido' %></h2>
 
-<form method="POST" action="<%= item ? '/pedidos/editar/' + item.pedidoId : '/pedidos/novo' %>" style="background: #fff; padding: 20px; max-width: 500px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-  
-  <div style="margin-bottom: 16px;">
-    <label for="clienteId" style="font-weight: bold; display: block; margin-bottom: 4px;">Cliente *</label>
-    <select id="clienteId" name="clienteId" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+  <form method="POST" action="<%= item ? '/pedidos/editar/' + item.pedidoId : '/pedidos/novo' %>" class="card-form">
+    
+    <label for="clienteId">Cliente *</label>
+    <select id="clienteId" name="clienteId" required>
       <option value="">— selecione —</option>
       <% clientes.forEach(c => { %>
         <option value="<%= c.clienteId %>" <%= item && item.clienteId === c.clienteId ? 'selected' : '' %>>
@@ -14,24 +14,25 @@
         </option>
       <% }) %>
     </select>
-  </div>
 
-  <div style="margin-bottom: 16px;">
-    <label for="pedidoData" style="font-weight: bold; display: block; margin-bottom: 4px;">Data do Pedido *</label>
+    <label for="pedidoData">Data do Pedido *</label>
     <input type="datetime-local" id="pedidoData" name="pedidoData" required 
-           value="<%= item ? new Date(item.pedidoData).toISOString().slice(0, 16) : new Date().toISOString().slice(0, 16) %>" 
-           style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-  </div>
+           value="<%= item ? new Date(item.pedidoData).toISOString().slice(0, 16) : new Date().toISOString().slice(0, 16) %>">
 
-  <div style="margin-bottom: 16px;">
-    <label for="pedidoStatus" style="font-weight: bold; display: block; margin-bottom: 4px;">Status *</label>
-    <input type="text" id="pedidoStatus" name="pedidoStatus" required maxlength="50" placeholder="Ex: Aberto, Pago, Entregue" value="<%= item ? item.pedidoStatus : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-  </div>
+    <label for="pedidoStatus">Status *</label>
+    <select id="pedidoStatus" name="pedidoStatus" required>
+      <option value="">— selecione —</option>
+      <option value="Aberto" <%= item && item.pedidoStatus === 'Aberto' ? 'selected' : '' %>>Aberto</option>
+      <option value="Pago" <%= item && item.pedidoStatus === 'Pago' ? 'selected' : '' %>>Pago</option>
+      <option value="Entregue" <%= item && item.pedidoStatus === 'Entregue' ? 'selected' : '' %>>Entregue</option>
+    </select>
 
-  <div class="form-buttons">
-    <button type="submit" class="btn-salvar">Salvar</button>
-    <a href="/produtos" class="btn-cancelar">Cancelar</a>
-  </div>
-</form>
+    <div class="form-buttons">
+      <button type="submit" class="btn-salvar">Salvar</button>
+      <a href="/pedidos" class="btn-cancelar">Cancelar</a>
+    </div>
+    
+  </form>
+</div>
 
 <%- include('../partials/footer') %>

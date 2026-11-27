@@ -1,4 +1,10 @@
-* { box-sizing: border-box; }
+/* =========================================
+   RESET E CONFIGURAÇÕES GERAIS
+   ========================================= */
+* { 
+  box-sizing: border-box; 
+}
+
 body {
   font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   margin: 0;
@@ -6,42 +12,107 @@ body {
   color: #222;
   line-height: 1.5;
 }
+
+/* =========================================
+   CABEÇALHO (HEADER)
+   ========================================= */
 header {
   background: #5b2c6f;
   color: #fff;
   padding: 12px 24px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-header h1 { margin: 0 0 8px 0; font-size: 20px; }
+
+header h1 { 
+  margin: 0 0 8px 0; 
+  font-size: 20px; 
+}
+
 header nav a {
   color: #fff;
   text-decoration: none;
   margin-right: 16px;
   padding: 4px 8px;
   border-radius: 4px;
-}
-header nav a:hover { background: rgba(255,255,255,0.15); }
-main {
-  width: 95%; /* Isso faz a área ocupar 95% da tela */
-  max-width: 1600px; /* Permite ficar bem largo em monitores grandes */
-  margin: 24px auto;
-  padding: 0 16px 48px;
+  font-weight: 500;
 }
 
-/* Layout do cabeçalho da página (Título + Botão) */
+header nav a:hover { 
+  background: rgba(255,255,255,0.15); 
+}
+
+/* =========================================
+   ÁREA PRINCIPAL (MAIN)
+   ========================================= */
+main {
+  width: 95%;
+  max-width: 1200px; /* Largura máxima da tabela */
+  margin: 0 auto;
+  padding: 24px 0 48px 0;
+}
+
+h2 { 
+  color: #5b2c6f; 
+  margin-top: 0; 
+}
+
+/* Layout do Topo da Página (Título + Botão) */
 .page-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  margin-top: 20px;
+  width: 100%; /* Ocupa a mesma largura que a tabela */
 }
 
 .page-header h2 {
   margin: 0;
+  color: #5b2c6f;
 }
 
-/* Estilo padrão para o botão de ação principal */
+/* =========================================
+   TABELAS
+   ========================================= */
+table {
+  width: 100%; /* Tabela ocupa 100% do main */
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  padding: 16px 10px 16px 10px;
+  font-weight: 600;
+  color: #000;
+  background-color: #f0e6f5; /* Fundo lilás no cabeçalho */
+  border-bottom: 2px solid #e0d0e8;
+  text-align: left;
+}
+
+td {
+  padding: 14px 10px  14px 10px;
+  border-bottom: 1px solid #eee;
+  color: #000;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Alinha a última coluna (Ações) para a direita */
+th:last-child, 
+td:last-child {
+  text-align: right;
+  width: 220px;
+}
+
+tbody tr:hover {
+  background-color: #faf7fc;
+}
+
+/* =========================================
+   BOTÕES EM GERAL
+   ========================================= */
 .btn-primary {
   display: inline-block;
   padding: 10px 16px;
@@ -51,144 +122,17 @@ main {
   border-radius: 4px;
   font-weight: bold;
   transition: background 0.2s;
+  border: none;
+  cursor: pointer;
 }
 
 .btn-primary:hover {
   background: #7d3c98;
 }
 
-/* Deixa a tabela mais larga e espaçada */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Sombra suave */
-  border-radius: 8px; /* Bordas arredondadas na tabela */
-  overflow: hidden; /* Necessário para o border-radius funcionar */
-}
-
-/* Ajuste no cabeçalho da tabela */
-thead tr {
-  background-color: #f0e6f5;
-}
-
-td {
-  padding: 14px 16px;
-  border-bottom: 1px solid #eee;
-  color: #000; /* <-- ADICIONE ESTA LINHA AQUI */
-}
-
-/* Aproveite e deixe o cabeçalho da tabela também preto */
-th {
-  padding: 16px;
-  font-weight: 600;
-  color: #000; /* <-- Trocado de #5b2c6f para #000 */
-  border-bottom: 2px solid #e0d0e8;
-}
-
-/* Destaque ao passar o mouse na linha */
-tbody tr:hover {
-  background-color: #faf7fc;
-}
-
-/* Estilo dos botões de formulário */
-.form-buttons {
-  display: flex;
-  gap: 12px; /* Espaço entre os botões */
-  margin-top: 20px;
-}
-
-.btn-salvar {
-  display: inline-block;
-  padding: 10px 24px;
-  min-width: 120px; /* Garante o mesmo tamanho */
-  background: #7d3c98; /* Roxo mais claro */
-  color: #fff;
-  text-decoration: none;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  text-align: center;
-  transition: background 0.2s;
-   font-size: 15px; 
-}
-
-.btn-salvar:hover {
-  background: #9b59b6;
-}
-
-.btn-cancelar {
-  display: inline-block;
-  padding: 10px 24px;
-  min-width: 120px; /* Garante o mesmo tamanho */
-  background: #4a235a; /* Roxo mais escuro */
-  color: #fff;
-  text-decoration: none;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  text-align: center;
-  transition: background 0.2s;
-  font-size: 15px; 
-}
-
-.btn-cancelar:hover {
-  background: #633974;
-}
-
-/* Botões de ação da tabela (Editar e Excluir) */
-.btn-editar {
-  display: inline-block;
-  padding: 6px 12px; /* Menos espaço interno (menor) */
-  min-width: auto; /* Remove a largura mínima fixa */
-  background: #7d3c98;
-  color: #fff;
-  text-decoration: none;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  text-align: center;
-  transition: background 0.2s;
-  font-size: 13px; /* Fonte menor */
-}
-
-.btn-editar:hover {
-  background: #9b59b6;
-}
-
-.btn-excluir {
-  display: inline-block;
-  padding: 6px 12px; /* Menos espaço interno (menor) */
-  min-width: auto; /* Remove a largura mínima fixa */
-  background: #4a235a;
-  color: #fff;
-  text-decoration: none;
-  border: none;
-  height: 32px;           /* Força a mesma altura para os dois */
-  min-width: 70px; 
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  text-align: center;
-  transition: background 0.2s;
-  font-size: 13px; /* Fonte menor */
-}
-
-.btn-excluir:hover {
-  background: #633974;
-}
-
-/* Para manter os dois botões lado a lado sem quebrar a linha */
-td .acoes {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-/* Botão de Detalhes (Roxo mais claro) */
+/* Botões de Ação da Tabela (Editar, Excluir, Detalhes) */
+.btn-editar, 
+.btn-excluir, 
 .btn-detalhes {
   display: inline-flex;
   align-items: center;
@@ -197,7 +141,6 @@ td .acoes {
   height: 32px;
   min-width: 70px;
   padding: 0 12px;
-  background: #ab6cc2; /* Um roxo bem clarinho e vibrante */
   color: #fff;
   text-decoration: none;
   border: none;
@@ -209,6 +152,162 @@ td .acoes {
   transition: background 0.2s;
 }
 
-.btn-detalhes:hover {
-  background: #af7ac5; /* Fica um pouquinho mais claro ao passar o mouse */
+.btn-editar { background: #7d3c98; } /* Roxo Claro */
+.btn-editar:hover { background: #9b59b6; }
+
+.btn-excluir { background: #4a235a; } /* Roxo Escuro */
+.btn-excluir:hover { background: #633974; }
+
+.btn-detalhes { background: #af7ac5; } /* Roxo Muito Claro */
+.btn-detalhes:hover { background: #c39bd3; }
+
+/* Agrupamento de botões dentro da tabela */
+td .acoes {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* =========================================
+   FORMULÁRIOS (CADASTRO/EDIÇÃO)
+   ========================================= */
+.card-form {
+  background: #fff;
+  padding: 40px; /* Um pouco mais de respiro interno */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  width: 100%; /* Ocupa toda a largura */
+  max-width: 1100px; /* Largura máxima para não esticar em monitores gigantes */
+  margin: 0 auto; /* Centraliza a caixa na tela */
+}
+
+.card-form label {
+  font-weight: bold;
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.card-form input[type="text"], 
+.card-form input[type="email"], 
+.card-form input[type="number"], 
+.card-form input[type="datetime-local"], 
+.card-form select, 
+.card-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  box-sizing: border-box;
+  background-color: #fafafa;
+  font-family: inherit;
+}
+
+.card-form input:focus, 
+.card-form select:focus, 
+.card-form textarea:focus {
+  border-color: #5b2c6f;
+  outline: none;
+  background-color: #fff;
+}
+
+.card-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Botões de Salvar e Cancelar do Formulário */
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn-salvar {
+  display: inline-block;
+  padding: 10px 24px;
+  min-width: 120px;
+  background: #7d3c98;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  transition: background 0.2s;
+  font-size: 15px;
+}
+
+.btn-salvar:hover { background: #9b59b6; }
+
+.btn-cancelar {
+  display: inline-block;
+  padding: 10px 24px;
+  min-width: 120px;
+  background: #4a235a;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  transition: background 0.2s;
+  font-size: 15px;
+}
+
+.btn-cancelar:hover { background: #633974; }
+
+/* =========================================
+   TELA DE DETALHES (MESTRE-DETALHE)
+   ========================================= */
+.card-detalhe {
+  background: #fff;
+  padding: 16px 20px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.card-detalhe h3 {
+  margin-top: 0;
+  color: #5b2c6f;
+}
+
+/* =========================================
+   OUTROS E RESPONSIVIDADE
+   ========================================= */
+.erro {
+  background: #fdecea;
+  border: 1px solid #f5c6cb;
+  color: #a94442;
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin: 20px 0;
+}
+
+.erro pre { 
+  white-space: pre-wrap; 
+  margin: 8px 0 0; 
+}
+td .acoes {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  header nav a { display: block; margin: 4px 0; }
+  .page-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  table, thead, tbody, th, td, tr { display: block; }
+  thead { display: none; }
+  td { border: none; border-bottom: 1px solid #eee; padding: 8px; text-align: left !important; }
+  td::before { content: attr(data-label) ": "; font-weight: bold; color: #5b2c6f; }
+  th:last-child, td:last-child { width: 100%; text-align: left !important; }
+  td .acoes { justify-content: flex-start; }
 }

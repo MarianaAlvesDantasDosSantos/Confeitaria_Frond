@@ -1,40 +1,38 @@
 <%- include('../partials/header') %>
 
-<h2><%= item ? 'Editar cliente' : 'Novo cliente' %></h2>
+<div style="max-width: 1100px; margin: 0 auto;">
+  <h2><%= item ? 'Editar cliente' : 'Novo cliente' %></h2>
 
-<form method="POST" action="<%= item ? '/clientes/editar/' + item.clienteId : '/clientes/novo' %>" class="card-form"></form>
-  
-  <div style="margin-bottom: 16px;">
-    <label for="clienteNome" style="font-weight: bold; display: block; margin-bottom: 4px;">Nome *</label>
-    <input type="text" id="clienteNome" name="clienteNome" required maxlength="120" value="<%= item ? item.clienteNome : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-  </div>
+  <form method="POST" action="<%= item ? '/clientes/editar/' + item.clienteId : '/clientes/novo' %>" class="card-form">
+    
+    <label for="clienteNome">Nome *</label>
+    <input type="text" id="clienteNome" name="clienteNome" required maxlength="120"
+           value="<%= item ? item.clienteNome : '' %>">
 
-  <div style="margin-bottom: 16px;">
-    <label for="clienteEmail" style="font-weight: bold; display: block; margin-bottom: 4px;">E-mail *</label>
-    <input type="email" id="clienteEmail" name="clienteEmail" required maxlength="120" value="<%= item ? item.clienteEmail : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-  </div>
+    <label for="clienteEmail">E-mail *</label>
+    <input type="email" id="clienteEmail" name="clienteEmail" required maxlength="120"
+           value="<%= item ? item.clienteEmail : '' %>">
 
-  <div style="margin-bottom: 16px;">
-    <label for="clienteCpf" style="font-weight: bold; display: block; margin-bottom: 4px;">CPF *</label>
-    <input type="text" id="clienteCpf" name="clienteCpf" required maxlength="14" value="<%= item ? item.clienteCpf : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-  </div>
+    <label for="clienteCpf">CPF *</label>
+    <input type="text" id="clienteCpf" name="clienteCpf" required maxlength="14"
+           value="<%= item ? item.clienteCpf : '' %>">
 
-  <div style="margin-bottom: 16px;">
-    <label for="clienteTelefone" style="font-weight: bold; display: block; margin-bottom: 4px;">Telefone</label>
-    <input type="text" id="clienteTelefone" name="clienteTelefone" maxlength="20" value="<%= item && item.clienteTelefone ? item.clienteTelefone : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-  </div>
+    <label for="clienteTelefone">Telefone</label>
+    <input type="text" id="clienteTelefone" name="clienteTelefone" maxlength="20"
+           value="<%= item && item.clienteTelefone ? item.clienteTelefone : '' %>">
 
-  <div style="margin-bottom: 16px;">
-    <label for="clienteDataCadastro" style="font-weight: bold; display: block; margin-bottom: 4px;">Data de Cadastro *</label>
-    <input type="datetime-local" id="clienteDataCadastro" name="clienteDataCadastro" required 
-           value="<%= item ? new Date(item.clienteDataCadastro).toISOString().slice(0, 16) : new Date().toISOString().slice(0, 16) %>" 
-           style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-  </div>
+    <label for="clienteDataCadastro">Data de Cadastro *</label>
+    <input type="datetime-local" id="clienteDataCadastro" name="clienteDataCadastro" required
+           value="<%= item
+              ? new Date(item.clienteDataCadastro).toISOString().slice(0, 16)
+              : new Date().toISOString().slice(0, 16) %>">
 
     <div class="form-buttons">
-    <button type="submit" class="btn-salvar">Salvar</button>
-    <a href="/clientes" class="btn-cancelar">Cancelar</a>
-  </div>
-</form>
+      <button type="submit" class="btn-salvar">Salvar</button>
+      <a href="/clientes" class="btn-cancelar">Cancelar</a>
+    </div>
+    
+  </form>
+</div>
 
 <%- include('../partials/footer') %>

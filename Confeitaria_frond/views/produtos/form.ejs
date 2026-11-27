@@ -1,47 +1,44 @@
 <%- include('../partials/header') %>
 
-<h2><%= item ? 'Editar produto' : 'Novo produto' %></h2>
-
-<form method="POST" action="<%= item ? '/produtos/editar/' + item.produtoId : '/produtos/novo' %>" class="card-form"></form>
+<div style="max-width: 1100px; margin: 0 auto; padding-top: 20px;">
   
-  <div style="margin-bottom: 16px;">
-    <label for="produtoNome" style="font-weight: bold; display: block; margin-bottom: 4px;">Nome *</label>
-    <input type="text" id="produtoNome" name="produtoNome" required maxlength="120" value="<%= item ? item.produtoNome : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-  </div>
+  <h2 style="margin-bottom: 20px;"><%= item ? 'Editar produto' : 'Novo produto' %></h2>
 
-  <div style="margin-bottom: 16px;">
-    <label for="categoriaId" style="font-weight: bold; display: block; margin-bottom: 4px;">Categoria *</label>
-    <select id="categoriaId" name="categoriaId" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+  <form method="POST" action="<%= item ? '/produtos/editar/' + item.produtoId : '/produtos/novo' %>" class="card-form">
+    
+    <label for="produtoNome">Nome *</label>
+    <input type="text" id="produtoNome" name="produtoNome" required maxlength="120" value="<%= item ? item.produtoNome : '' %>">
+
+    <label for="categoriaId">Categoria *</label>
+    <select id="categoriaId" name="categoriaId" required>
       <option value="">— selecione —</option>
       <% categorias.forEach(c => { %>
-        <!-- Marca a categoria como 'selected' se for a categoria do produto na hora de editar -->
         <option value="<%= c.categoriaId %>" <%= item && item.categoriaId === c.categoriaId ? 'selected' : '' %>>
           <%= c.categoriaNome %>
         </option>
       <% }) %>
     </select>
-  </div>
 
-  <div style="margin-bottom: 16px;">
-    <label for="produtoDescricao" style="font-weight: bold; display: block; margin-bottom: 4px;">Descrição</label>
-    <textarea id="produtoDescricao" name="produtoDescricao" maxlength="255" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; min-height: 80px;"><%= item && item.produtoDescricao ? item.produtoDescricao : '' %></textarea>
-  </div>
+    <label for="produtoDescricao">Descrição</label>
+    <textarea id="produtoDescricao" name="produtoDescricao" maxlength="255"><%= item && item.produtoDescricao ? item.produtoDescricao : '' %></textarea>
 
-  <div style="margin-bottom: 16px; display: flex; gap: 16px;">
-    <div style="flex: 1;">
-      <label for="produtoPreco" style="font-weight: bold; display: block; margin-bottom: 4px;">Preço *</label>
-      <input type="number" id="produtoPreco" name="produtoPreco" required step="0.01" min="0" value="<%= item ? Number(item.produtoPreco).toFixed(2) : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+    <div style="display: flex; gap: 16px; margin-top: 16px;">
+      <div style="flex: 1;">
+        <label for="produtoPreco">Preço *</label>
+        <input type="number" id="produtoPreco" name="produtoPreco" required step="0.01" min="0" value="<%= item ? Number(item.produtoPreco).toFixed(2) : '' %>">
+      </div>
+      <div style="flex: 1;">
+        <label for="produtoEstoque">Estoque *</label>
+        <input type="number" id="produtoEstoque" name="produtoEstoque" required min="0" value="<%= item ? item.produtoEstoque : '' %>">
+      </div>
     </div>
-    <div style="flex: 1;">
-      <label for="produtoEstoque" style="font-weight: bold; display: block; margin-bottom: 4px;">Estoque *</label>
-      <input type="number" id="produtoEstoque" name="produtoEstoque" required min="0" value="<%= item ? item.produtoEstoque : '' %>" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-    </div>
-  </div>
 
     <div class="form-buttons">
-    <button type="submit" class="btn-salvar">Salvar</button>
-    <a href="/produtos" class="btn-cancelar">Cancelar</a>
-  </div>
-</form>
+      <button type="submit" class="btn-salvar">Salvar</button>
+      <a href="/produtos" class="btn-cancelar">Cancelar</a>
+    </div>
+    
+  </form>
+</div>
 
 <%- include('../partials/footer') %>
