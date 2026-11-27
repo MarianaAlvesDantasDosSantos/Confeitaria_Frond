@@ -19,38 +19,55 @@ body {
 header {
   background: #5b2c6f;
   color: #fff;
-  padding: 12px 24px;
+  padding: 10px 24px 20px 24px; 
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow: visible; /* Permite que a logo vaze para fora da faixa roxa */
 }
 
+
 header h1 { 
-  margin: 0 0 8px 0; 
-  font-size: 20px; 
+  font-weight: 600;
+}
+
+header nav {
+margin-top: 12px;
+  display: flex;
+  gap: 20px; /* Espaçamento entre os links */
 }
 
 header nav a {
-  color: #fff;
+  color: #ffffff !important; /* Força a cor branca */
   text-decoration: none;
-  margin-right: 16px;
-  padding: 4px 8px;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 6px 12px;
   border-radius: 4px;
-  font-weight: 500;
+  transition: background 0.2s;
+  display: inline-block;
 }
 
-header nav a:hover { 
-  background: rgba(255,255,255,0.15); 
+header nav a:hover {
+  background: rgba(255, 255, 255, 0.2); /* Fundo branco transparente */
+  color: #ffffff !important;
 }
 
 /* =========================================
    ÁREA PRINCIPAL (MAIN)
    ========================================= */
 main {
-  width: 95%;
-  max-width: 1200px; /* Largura máxima da tabela */
-  margin: 0 auto;
-  padding: 24px 0 48px 0;
+  width: 100%;
+  max-width: 100%;
+  margin: -40px auto 40px auto; /* O -40px puxa o quadro para cima da faixa roxa */
+  padding: 0 10px;
+  position: relative;
+  z-index: 10; /* Garante que o quadro fique na frente */
+  min-height: 400px;
 }
-
+/* Opcional: Se quiser remover o espaço extra do topo do quadro, 
+   diminua o margin-top do h2 */
+main h2 {
+  margin-top: 0;
+}
 h2 { 
   color: #5b2c6f; 
   margin-top: 0; 
@@ -63,6 +80,7 @@ h2 {
   align-items: center;
   margin-bottom: 20px;
   width: 100%; /* Ocupa a mesma largura que a tabela */
+  
 }
 
 .page-header h2 {
@@ -299,6 +317,33 @@ td .acoes {
   gap: 8px;
   align-items: center;
   justify-content: flex-end;
+}
+
+/* Estilo da Logo no Cabeçalho */
+.logo-img {
+  height: 70px !important; /* Força a altura */
+  width: auto !important;  /* Mantém a proporção */
+  max-width: none !important; /* Remove qualquer limite de largura */
+  object-fit: contain;
+}
+
+header .header-content {
+  display: flex;
+  align-items: center;
+  margin-left: 140px; /* Espaço para o título não ficar atrás da logo gigante */
+}
+
+/* A MÁGICA: Logo absoluta, grande e sobreposta */
+header .logo-gigante {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%); /* Centraliza verticalmente na faixa */
+  height: 160px; /* Tamanho gigante */
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  z-index: 20;
 }
 
 @media (max-width: 768px) {
